@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "cc08Wnfwe1+X3jIXGSF1wTUdBKuOYfyDj2gs6jIyrZU=",
+  "Source": "filpkart_api",
+  "BasePath": "_content/filpkart_api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

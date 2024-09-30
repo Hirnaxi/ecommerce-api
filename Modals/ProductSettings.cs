@@ -11,6 +11,7 @@ namespace filpkart_api.Modals
         public string DatabaseName { get; set; } = null!;
         public string CollectionName { get; set; } = null!;
         public string SignInCollection { get; set; } = null!;
+        public string OrderCollection    { get; set;} = null!;
        
     }
 
@@ -60,13 +61,16 @@ namespace filpkart_api.Modals
     public class Order
     {
         [BsonId]
+        [BsonRepresentation(BsonType.ObjectId),BsonElement("_id")]
         public string? Id { get; set; }
+        [BsonRepresentation(BsonType.ObjectId), BsonElement("productId")]
+        
         public string ProductId { get; set; }
         public int Quantity { get; set; }
         public string Address { get; set; }
         public string PaymentMethod { get; set; }
-
-        public string? UserName { get; set; }
+        [BsonRepresentation(BsonType.ObjectId), BsonElement("userId")]
+        public string UserId { get; set; }
 
        
 

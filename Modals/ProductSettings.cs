@@ -10,7 +10,6 @@ namespace filpkart_api.Modals
         public string ConnectionString { get; set; } = null!;
         public string DatabaseName { get; set; } = null!;
         public string CollectionName { get; set; } = null!;
-
         public string SignInCollection { get; set; } = null!;
        
     }
@@ -26,8 +25,16 @@ namespace filpkart_api.Modals
         public string? Image2 { get; set; }
         public string? Image3 { get; set; }
         public string? Image4 { get; set; }
+        public string? color { get; set; }
+        public string? model {  get; set; }
+        public string? weight { get; set; }
+        public string? description { get; set; }
+        public string? description2 { get; set; }
+        public string? warranty { get; set; }
         public string? OldPrice { get; set; }
         public string? Discount { get; set; }
+
+        public string? stock {  get; set; }
         public string? Category { get; set; }
 
        

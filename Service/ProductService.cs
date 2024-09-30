@@ -20,7 +20,7 @@ namespace filpkart_api.Service
             _productCollection = database.GetCollection<ProductBase>(settings.Value.CollectionName);
             _signInCollection = database.GetCollection<SignIn>(settings.Value.SignInCollection);
             _orderCollection = database.GetCollection<Order>(settings.Value.OrderCollection);
-            _cartCollection = database.GetCollection<Cart>("Carts");
+            _cartCollection = database.GetCollection<Cart>(settings.Value.CartCollection);
         }
 
         // Product Methods
@@ -92,8 +92,8 @@ namespace filpkart_api.Service
         public async Task<List<Cart>> GetCartsAsync()=>
             await _cartCollection.Find(_ => true).ToListAsync();
 
-        public async Task<Cart> GetCartByIdAsync(string id)=>
-            await _cartCollection.Find(x =>x.Id == id).FirstOrDefaultAsync();
+        public async Task<List<Cart>> GetCartByIdAsync(string userId)=>
+            await _cartCollection.Find(x =>x.UserId == userId).ToListAsync();
 
         public async Task DeleteCartAsync(string id) =>
             await _cartCollection.DeleteOneAsync(x => x.Id == id);

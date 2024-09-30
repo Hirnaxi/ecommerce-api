@@ -12,7 +12,9 @@ namespace filpkart_api.Modals
         public string CollectionName { get; set; } = null!;
         public string SignInCollection { get; set; } = null!;
         public string OrderCollection    { get; set;} = null!;
-       
+        public string CartCollection { get; set; } = null!;
+
+
     }
 
     public class ProductBase
@@ -61,38 +63,46 @@ namespace filpkart_api.Modals
     public class Order
     {
         [BsonId]
-        [BsonRepresentation(BsonType.ObjectId),BsonElement("_id")]
+        [BsonRepresentation(BsonType.ObjectId), BsonElement("_id")]
         public string? Id { get; set; }
         [BsonRepresentation(BsonType.ObjectId), BsonElement("productId")]
-        
         public string ProductId { get; set; }
-        public int Quantity { get; set; }
-        public string Address { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public Address Address { get; set; }
         public string PaymentMethod { get; set; }
+
         [BsonRepresentation(BsonType.ObjectId), BsonElement("userId")]
         public string UserId { get; set; }
-
-       
-
     }
 
-  
-  
+    public class Address
+    {
+        public string StreetAddress { get; set; }
+        public string City { get; set; }
+        public string State { get; set; }
+        public string PostalCode { get; set; }
+    }
+
+
 
 
     public class Cart
     {
-        [BsonId, BsonRepresentation(BsonType.ObjectId)]
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId), BsonElement("_id")]
         public string? Id { get; set; }
-
+        
         public string ProductId { get; set; }
-
         public int Quantity { get; set; }
+        [BsonRepresentation(BsonType.ObjectId), BsonElement("userId")]
+        public string UserId { get; set; }
+
 
     }
 
-     
-    
-    
+
+
+
 
 }

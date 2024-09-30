@@ -120,7 +120,7 @@ namespace filpkart_api.Controllers
             user.IfSignIn = true;
             await _productService.LogoutAccountAsync(user.Id, user);
 
-            return Ok("Login successful");
+            return Ok(user);
         }
 
         //Update User Data
@@ -200,24 +200,24 @@ namespace filpkart_api.Controllers
 
 
         // Get all orders
-        [HttpGet("Orders")]
+    /*    [HttpGet("Orders")]
         public async Task<ActionResult<List<Order>>> GetOrders()
         {
             var orders = await _productService.GetOrdersAsync();
             return Ok(orders);
         }
-
+*/
         // Get an order by ID
-        [HttpGet("Order/{id}")]
-        public async Task<ActionResult<Order>> GetOrderById(string id)
+        [HttpGet("GetOrderByUserId")]
+        public async Task<ActionResult<Order>> GetOrderById(string userId)
         {
-            var order = await _productService.GetOrderByIdAsync(id);
-            if (order == null)
-            {
-                return NotFound();
-            }
+            var order = await _productService.GetOrderByIdAsync(userId);
+          
             return Ok(order);
         }
+
+
+
 
         // Delete an order by ID
         [HttpDelete("Orders/{id}")]
@@ -256,16 +256,16 @@ namespace filpkart_api.Controllers
         }
 
         // Get an cart by ID
-        [HttpGet("Cart/{id}")]
-        public async Task<ActionResult<Cart>> GetCartById(string id)
+
+        [HttpGet("CartById")]
+        public async Task<ActionResult<Cart>> GetCartById(string userId)
         {
-            var cart = await _productService.GetCartByIdAsync(id);
-            if (cart == null)
-            {
-                return NotFound();
-            }
+            var cart = await _productService.GetCartByIdAsync(userId);
             return Ok(cart);
         }
+
+
+
 
         // Delete an order by ID
         [HttpDelete("Cart/{id}")]

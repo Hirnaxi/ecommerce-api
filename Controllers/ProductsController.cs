@@ -24,6 +24,8 @@ namespace filpkart_api.Controllers
             return Ok(products);
         }
 
+
+
         // Get a product by ID
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductBase>> GetProductById(string id)
@@ -280,6 +282,32 @@ namespace filpkart_api.Controllers
             await _productService.DeleteCartAsync(id);
             return NoContent();
         }
+
+            [HttpPut("Update-Cart/{id}")]
+            public async Task<IActionResult> UpdateCart(string id, [FromBody] Cart updateCartData)
+            {
+            
+                if (string.IsNullOrWhiteSpace(id) || updateCartData == null)
+                {
+                    return BadRequest("Invalid cart ID or data");
+                }
+
+          
+                var existingCart = (await _productService.GetCartsAsync()).FirstOrDefault(x => x.Id == id);
+                if (existingCart == null)
+                {
+                    return NotFound("Cart not found");
+                }
+
+
+                existingCart.Quantity = updateCartData.Quantity;
+    
+                await _productService.UpdateCartAsync(id, existingCart);
+
+                return NoContent();
+            }
+
+
 
         // Get all users
         [HttpGet("Users")]

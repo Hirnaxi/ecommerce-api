@@ -34,9 +34,8 @@ namespace filpkart_api.Modals
         public string? description { get; set; }
         public string? description2 { get; set; }
         public string? warranty { get; set; }
-        public string? OldPrice { get; set; }
+        public decimal? OldPrice { get; set; }
         public string? Discount { get; set; }
-
         public string? stock {  get; set; }
         public string? Category { get; set; }
 
@@ -57,6 +56,8 @@ namespace filpkart_api.Modals
         [Required]
         public string? Password { get; set; }
         public bool? IfSignIn { get; set; } = true;
+        public string? Email { get; set; }
+        public string confirmPassword {  get; set; }
 
     }
 
@@ -68,6 +69,7 @@ namespace filpkart_api.Modals
         [BsonRepresentation(BsonType.ObjectId), BsonElement("productId")]
         public string ProductId { get; set; }
         public string Name { get; set; }
+        public int Quantity {  get; set; }
         public string Email { get; set; }
         public Address Address { get; set; }
         public string PaymentMethod { get; set; }

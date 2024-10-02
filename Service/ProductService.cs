@@ -27,6 +27,8 @@ namespace filpkart_api.Service
         public async Task<List<ProductBase>> GetProductsAsync() =>
             await _productCollection.Find(_ => true).ToListAsync();
 
+
+        
         public async Task<ProductBase> GetProductByIdAsync(string id) =>
             await _productCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
 
@@ -98,8 +100,11 @@ namespace filpkart_api.Service
         public async Task DeleteCartAsync(string id) =>
             await _cartCollection.DeleteOneAsync(x => x.Id == id);
 
-        
-        }
+
+        public async Task UpdateCartAsync(string id, Cart updateCart) =>
+           await _cartCollection.ReplaceOneAsync(x => x.Id == id, updateCart);
+
+    }
 
     }
 

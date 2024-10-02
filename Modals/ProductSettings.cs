@@ -57,7 +57,7 @@ namespace filpkart_api.Modals
         public string? Password { get; set; }
         public bool? IfSignIn { get; set; } = true;
         public string? Email { get; set; }
-        public string confirmPassword {  get; set; }
+        public string? confirmPassword {  get; set; }
 
     }
 

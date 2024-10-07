@@ -1244,19 +1244,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Hirbishnoi\\.nuget\\packages\\": {}
+    "C:\\Users\\Mahendra\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Hirbishnoi\\source\\repos\\filpkart_api\\filpkart_api.csproj",
+      "projectUniqueName": "C:\\Users\\Mahendra\\Source\\Repos\\ecommerce-api\\filpkart_api.csproj",
       "projectName": "filpkart_api",
-      "projectPath": "C:\\Users\\Hirbishnoi\\source\\repos\\filpkart_api\\filpkart_api.csproj",
-      "packagesPath": "C:\\Users\\Hirbishnoi\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Hirbishnoi\\source\\repos\\filpkart_api\\obj\\",
+      "projectPath": "C:\\Users\\Mahendra\\Source\\Repos\\ecommerce-api\\filpkart_api.csproj",
+      "packagesPath": "C:\\Users\\Mahendra\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Mahendra\\Source\\Repos\\ecommerce-api\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Hirbishnoi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Mahendra\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

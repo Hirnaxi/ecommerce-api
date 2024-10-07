@@ -13,8 +13,16 @@ namespace filpkart_api.Modals
         public string SignInCollection { get; set; } = null!;
         public string OrderCollection    { get; set;} = null!;
         public string CartCollection { get; set; } = null!;
+        public string CategoryCollection { get; set; }
 
 
+    }
+
+    public class Category
+    {
+        [BsonId, BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
+        public string Name { get; set; }
     }
 
     public class ProductBase
@@ -58,6 +66,7 @@ namespace filpkart_api.Modals
         public bool? IfSignIn { get; set; } = true;
         public string? Email { get; set; }
         public string? confirmPassword {  get; set; }
+        public List<Address> AddressList { get; set; } = new List<Address>();
 
     }
 
@@ -95,10 +104,10 @@ namespace filpkart_api.Modals
         [BsonRepresentation(BsonType.ObjectId), BsonElement("_id")]
         public string? Id { get; set; }
         
-        public string ProductId { get; set; }
+        public string? ProductId { get; set; }
         public int Quantity { get; set; }
         [BsonRepresentation(BsonType.ObjectId), BsonElement("userId")]
-        public string UserId { get; set; }
+        public string? UserId { get; set; }
 
 
     }

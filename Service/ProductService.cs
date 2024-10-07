@@ -11,6 +11,7 @@ namespace filpkart_api.Service
         private readonly IMongoCollection<SignIn> _signInCollection;
         private readonly IMongoCollection<Order> _orderCollection;
         private readonly IMongoCollection<Cart> _cartCollection;
+        private readonly IMongoCollection<Category> _categoryCollection;
 
         public ProductService(IOptions<ProductSettings> settings)
         {
@@ -21,14 +22,31 @@ namespace filpkart_api.Service
             _signInCollection = database.GetCollection<SignIn>(settings.Value.SignInCollection);
             _orderCollection = database.GetCollection<Order>(settings.Value.OrderCollection);
             _cartCollection = database.GetCollection<Cart>(settings.Value.CartCollection);
+            _categoryCollection = database.GetCollection<Category>(settings.Value.CategoryCollection);
         }
 
         // Product Methods
         public async Task<List<ProductBase>> GetProductsAsync() =>
             await _productCollection.Find(_ => true).ToListAsync();
 
+        ///category
 
-        
+        public async Task<List<Category>> GetCategoriesAsync()=>
+            await _categoryCollection.Find(_ => true).ToListAsync();
+
+        public async Task CreateCategoryAsync(Category category) =>
+           await _categoryCollection.InsertOneAsync(category);
+
+
+        public async Task<Category> GetCategoryByIdAsync(string id) =>
+           await _categoryCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
+
+
+
+
+
+
+
         public async Task<ProductBase> GetProductByIdAsync(string id) =>
             await _productCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
 
@@ -59,7 +77,7 @@ namespace filpkart_api.Service
 
 
         // Order Methods
-        public async Task CreateOrderAsync(Order order)
+  /*      public async Task CreateOrderAsync(Order order)
         {
             if (order.Id == null || order.Id == ObjectId.Empty.ToString())
             {
@@ -67,7 +85,7 @@ namespace filpkart_api.Service
             }
 
             await _orderCollection.InsertOneAsync(order);
-        }
+        }*/
 
 
 
@@ -104,6 +122,34 @@ namespace filpkart_api.Service
         public async Task UpdateCartAsync(string id, Cart updateCart) =>
            await _cartCollection.ReplaceOneAsync(x => x.Id == id, updateCart);
 
+
+
+
+        //Address Management
+        public async Task CreateOrderAsync(Order order)
+        {
+            if (order.Id == null || order.Id == ObjectId.Empty.ToString())
+            {
+                order.Id = ObjectId.GenerateNewId().ToString();
+            }
+
+            await _orderCollection.InsertOneAsync(order);
+
+            var user = await _signInCollection.Find(x => x.Id == order.UserId).FirstOrDefaultAsync();
+
+            if (user != null)
+            {
+                if (!user.AddressList.Any(a => a.StreetAddress == order.Address.StreetAddress &&
+                                                a.City == order.Address.City &&
+                                                a.State == order.Address.State &&
+                                                a.PostalCode == order.Address.PostalCode))
+                {
+                    user.AddressList.Add(order.Address);
+                    await _signInCollection.ReplaceOneAsync(x => x.Id == user.Id, user);
+                }
+            }
+        }
+        
     }
 
     }

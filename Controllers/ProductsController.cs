@@ -24,6 +24,56 @@ namespace filpkart_api.Controllers
             return Ok(products);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("GetCategory")]
+        public async Task<ActionResult<List<Category>>> GetCategory()
+        {
+            var category = await _productService.GetCategoriesAsync();
+            return Ok(category);
+        }
+
+
+        [HttpPost("Create_Category")]
+        public async Task<IActionResult> CreateCategory([FromBody] Category newProduct)
+        {
+            if (newProduct == null)
+            {
+                return BadRequest("Product data is required.");
+            }
+
+            newProduct.Id = ObjectId.GenerateNewId().ToString();
+            await _productService.CreateCategoryAsync(newProduct);
+            return CreatedAtAction(nameof(GetProductById), new { id = newProduct.Id }, newProduct);
+        }
+
+
+        [HttpGet("CategoryBy{id}")]
+        public async Task<ActionResult<Category>> GetCategoryById(string id)
+        {
+            var category = await _productService.GetCategoryByIdAsync(id);
+            if (category == null)
+            {
+                return NotFound();
+            }
+            return category;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         // Get a product by ID
@@ -183,7 +233,7 @@ namespace filpkart_api.Controllers
             return NoContent();
         }
 
- 
+
 
         // Create a new order
         [HttpPost("Order")]
@@ -198,17 +248,17 @@ namespace filpkart_api.Controllers
             return Ok("Order placed successfully.");
         }
 
-        
+
 
 
         // Get all orders
-    /*    [HttpGet("Orders")]
-        public async Task<ActionResult<List<Order>>> GetOrders()
-        {
-            var orders = await _productService.GetOrdersAsync();
-            return Ok(orders);
-        }
-*/
+        /*    [HttpGet("Orders")]
+            public async Task<ActionResult<List<Order>>> GetOrders()
+            {
+                var orders = await _productService.GetOrdersAsync();
+                return Ok(orders);
+            }
+    */
         // Get an order by ID
         [HttpGet("GetOrderByUserId")]
         public async Task<ActionResult<Order>> GetOrderById(string userId)
@@ -284,6 +334,7 @@ namespace filpkart_api.Controllers
         }
 
             [HttpPut("Update-Cart/{id}")]
+
             public async Task<IActionResult> UpdateCart(string id, [FromBody] Cart updateCartData)
             {
             
@@ -318,6 +369,23 @@ namespace filpkart_api.Controllers
         }
 
 
+
+        // Address management
+
+        [HttpGet("User/{userId}/Addresses")]
+        public async Task<ActionResult<List<Address>>> GetUserAddresses(string userId)
+        {
+
+            var users = await _productService.GetSignInAsync();
+
+            var user = users.FirstOrDefault(u => u.Id == userId);
+
+            if (user == null)
+            {
+                return NotFound("User not found.");
+            }
+            return Ok(user.AddressList);
+        }
 
     }
 }

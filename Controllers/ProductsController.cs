@@ -18,9 +18,9 @@ namespace filpkart_api.Controllers
 
         // Get all products
         [HttpGet("GetAll")]
-        public async Task<ActionResult<List<ProductBase>>> GetProducts()
+        public async Task<ActionResult<List<ProductBase>>> GetProducts(string search = "")
         {
-            var products = await _productService.GetProductsAsync();
+            var products = await _productService.GetProductsAsync(search);
             return Ok(products);
         }
 

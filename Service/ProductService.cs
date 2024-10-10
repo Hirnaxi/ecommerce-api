@@ -26,8 +26,34 @@ namespace filpkart_api.Service
         }
 
         // Product Methods
-        public async Task<List<ProductBase>> GetProductsAsync() =>
-            await _productCollection.Find(_ => true).ToListAsync();
+        public async Task<List<ProductBase>> GetProductsAsync(string search = "")
+        {
+            BsonRegularExpression regex = new(search, "i");
+            var res = _productCollection.Aggregate().Match(new BsonDocument
+            {
+                { "Brand", regex}
+            }).Project<ProductBase>(new BsonDocument
+            {
+                { "Name", 1 },
+                { "Brand", 1 },
+                { "Price", 1 },
+                { "Image1", 1 },
+                { "Image2", 1 },
+                { "Image3", 1 },
+                { "Image4", 1 },
+                { "Color", 1 },
+                { "Model", 1 },
+                { "Weight", 1 },
+                { "Description", 1 },
+                { "Description2", 1 },
+                { "Warranty", 1 },
+                { "OldPrice", 1 },
+                { "Discount", 1 },
+                { "Stock", 1 },
+                { "Category", 1 }
+            }).ToList();
+           return res;
+        }
 
         ///category
 

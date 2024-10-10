@@ -36,15 +36,15 @@ namespace filpkart_api.Modals
         public string? Image2 { get; set; }
         public string? Image3 { get; set; }
         public string? Image4 { get; set; }
-        public string? color { get; set; }
-        public string? model {  get; set; }
-        public string? weight { get; set; }
-        public string? description { get; set; }
-        public string? description2 { get; set; }
-        public string? warranty { get; set; }
+        public string? Color { get; set; }
+        public string? Model {  get; set; }
+        public string? Weight { get; set; }
+        public string? Description { get; set; }
+        public string? Description2 { get; set; }
+        public string? Warranty { get; set; }
         public decimal? OldPrice { get; set; }
         public string? Discount { get; set; }
-        public string? stock {  get; set; }
+        public string? Stock {  get; set; }
         public string? Category { get; set; }
 
        
@@ -76,7 +76,7 @@ namespace filpkart_api.Modals
         [BsonRepresentation(BsonType.ObjectId), BsonElement("_id")]
         public string? Id { get; set; }
         [BsonRepresentation(BsonType.ObjectId), BsonElement("productId")]
-        public string ProductId { get; set; }
+        public List<string> ProductId { get; set; }
         public string Name { get; set; }
         public int Quantity {  get; set; }
         public string Email { get; set; }

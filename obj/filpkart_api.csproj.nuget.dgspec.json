@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Mahendra\\source\\repos\\ecommerce-api\\filpkart_api.csproj": {}
+    "C:\\Users\\Hirbishnoi\\OneDrive\\Desktop\\TechTrove api\\filpkart_api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Mahendra\\source\\repos\\ecommerce-api\\filpkart_api.csproj": {
+    "C:\\Users\\Hirbishnoi\\OneDrive\\Desktop\\TechTrove api\\filpkart_api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Mahendra\\source\\repos\\ecommerce-api\\filpkart_api.csproj",
+        "projectUniqueName": "C:\\Users\\Hirbishnoi\\OneDrive\\Desktop\\TechTrove api\\filpkart_api.csproj",
         "projectName": "filpkart_api",
-        "projectPath": "C:\\Users\\Mahendra\\source\\repos\\ecommerce-api\\filpkart_api.csproj",
-        "packagesPath": "C:\\Users\\Mahendra\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Mahendra\\source\\repos\\ecommerce-api\\obj\\",
+        "projectPath": "C:\\Users\\Hirbishnoi\\OneDrive\\Desktop\\TechTrove api\\filpkart_api.csproj",
+        "packagesPath": "C:\\Users\\Hirbishnoi\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Hirbishnoi\\OneDrive\\Desktop\\TechTrove api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Mahendra\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Hirbishnoi\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [

@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Controllers",
+    "\\Modals",
+    "\\Properties",
+    "\\Service"
   ],
   "SelectedNode": "\\filpkart_api.sln",
   "PreviewInSolutionExplorer": false

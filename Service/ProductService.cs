@@ -12,6 +12,7 @@ namespace filpkart_api.Service
         private readonly IMongoCollection<Order> _orderCollection;
         private readonly IMongoCollection<Cart> _cartCollection;
         private readonly IMongoCollection<Category> _categoryCollection;
+        private readonly IMongoCollection<Rating> _ratingCollection;
 
         public ProductService(IOptions<ProductSettings> settings)
         {
@@ -23,6 +24,7 @@ namespace filpkart_api.Service
             _orderCollection = database.GetCollection<Order>(settings.Value.OrderCollection);
             _cartCollection = database.GetCollection<Cart>(settings.Value.CartCollection);
             _categoryCollection = database.GetCollection<Category>(settings.Value.CategoryCollection);
+            _ratingCollection = database.GetCollection<Rating>(settings.Value.RatingCollection);
         }
 
         // Product Methods
@@ -175,7 +177,20 @@ namespace filpkart_api.Service
                 }
             }
         }
-        
+
+        // Rating Collection API//
+        public async Task<List<Rating>> GetRatingsAsync() =>
+            await _ratingCollection.Find(_ => true).ToListAsync();
+
+        public async Task CreateRatingAsync(Rating rating) =>
+       await _ratingCollection.InsertOneAsync(rating);
+
+
+     
+
+        public async Task<Rating> GetRatingByProductId (string productId )=>
+            await _ratingCollection.Find(X => X.ProductId == productId).FirstOrDefaultAsync();
+
     }
 
     }

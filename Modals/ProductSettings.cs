@@ -13,7 +13,8 @@ namespace filpkart_api.Modals
         public string SignInCollection { get; set; } = null!;
         public string OrderCollection    { get; set;} = null!;
         public string CartCollection { get; set; } = null!;
-        public string CategoryCollection { get; set; }
+        public string CategoryCollection { get; set; } = null!;
+        public string RatingCollection { get; set; } = null!;
 
 
     }
@@ -79,7 +80,7 @@ namespace filpkart_api.Modals
         public List<string> ProductId { get; set; }
         public string Name { get; set; }
         public int Quantity {  get; set; }
-        public string Email { get; set; }
+        public string Contact { get; set; }
         public Address Address { get; set; }
         public string PaymentMethod { get; set; }
 
@@ -110,6 +111,18 @@ namespace filpkart_api.Modals
         public string? UserId { get; set; }
 
 
+    }
+
+
+    public class Rating
+    {
+        [BsonRepresentation(BsonType.ObjectId),BsonElement("_id")]
+        public string? Id { get; set; }
+        [BsonRepresentation(BsonType.ObjectId),BsonElement("productId")]
+        public string? ProductId { get; set; }
+        [BsonRepresentation(BsonType.ObjectId), BsonElement("userId")]
+        public string? UserId { get;set; }
+        public int RatingNumber { get; set; }
     }
 
 

@@ -337,12 +337,6 @@ namespace filpkart_api.Controllers
 
             public async Task<IActionResult> UpdateCart(string id, [FromBody] Cart updateCartData)
             {
-            
-                if (string.IsNullOrWhiteSpace(id) || updateCartData == null)
-                {
-                    return BadRequest("Invalid cart ID or data");
-                }
-
           
                 var existingCart = (await _productService.GetCartsAsync()).FirstOrDefault(x => x.Id == id);
                 if (existingCart == null)
@@ -385,6 +379,34 @@ namespace filpkart_api.Controllers
                 return NotFound("User not found.");
             }
             return Ok(user.AddressList);
+        }
+
+
+        //Rating Collection//
+        [HttpGet("Rating/Get")]
+        public async Task<ActionResult<List<Rating>>> GetRating()
+        {
+
+            var rating = await _productService.GetRatingsAsync();
+            return rating;
+
+        }
+          [HttpPost("Rating/Post")]
+         public async Task<IActionResult> Rating([FromBody] Rating newRating)
+          {
+            await _productService.CreateRatingAsync(newRating);
+             return Ok("Rating submitted successfully.");
+           }
+
+
+
+
+
+        [HttpGet("Get/RatingByproduct${productId}")]
+        public async Task<ActionResult<Rating>> GetRatingByProductId(string productId)
+        {
+            var rating = await _productService.GetRatingByProductId(productId);
+            return rating;
         }
 
     }

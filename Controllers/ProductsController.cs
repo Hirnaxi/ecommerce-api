@@ -157,12 +157,12 @@ namespace filpkart_api.Controllers
         [HttpPost ("Login")]
         public async Task<IActionResult> CreateLogin([FromBody] SignIn LoginData)
         {
-            if(LoginData == null || string.IsNullOrEmpty(LoginData.UserName) || string.IsNullOrEmpty(LoginData.Password))
+            if(LoginData == null || string.IsNullOrEmpty(LoginData.firstName) || string.IsNullOrEmpty(LoginData.Password))
             {
-                return BadRequest("Username and Password are required");
+                return BadRequest("first name and Password are required");
             }
 
-            var user = (await _productService.GetSignInAsync()).FirstOrDefault(u => u.UserName == LoginData.UserName && u.Password == LoginData.Password);
+            var user = (await _productService.GetSignInAsync()).FirstOrDefault(u => u.firstName == LoginData.firstName && u.Password == LoginData.Password);
 
             if(user == null)
             {
@@ -191,7 +191,8 @@ namespace filpkart_api.Controllers
                 return NotFound("User not found");
             }
 
-            existingUser.UserName = updateUserData.UserName;
+            existingUser.firstName = updateUserData.firstName;
+          //  existingUser.lastName = updateUserData.lastName;
             existingUser.Password = updateUserData.Password;
            
             await _productService.LogoutAccountAsync(id, existingUser);
@@ -202,12 +203,12 @@ namespace filpkart_api.Controllers
         [HttpPost("Logout")]
         public async Task<IActionResult> Logout([FromBody] SignIn signOutUser)
         {
-            if (signOutUser == null || string.IsNullOrEmpty(signOutUser.UserName))
+            if (signOutUser == null || string.IsNullOrEmpty(signOutUser.firstName))
             {
                 return BadRequest("User data is required for logout.");
             }
 
-            var user = (await _productService.GetSignInAsync()).FirstOrDefault(u => u.UserName == signOutUser.UserName);
+            var user = (await _productService.GetSignInAsync()).FirstOrDefault(u => u.firstName == signOutUser.firstName);
             if (user == null)
             {
                 return NotFound("User not found.");

@@ -58,7 +58,9 @@ namespace filpkart_api.Modals
         public string? Id { get; set; }
 
         [Required]
-        public string UserName { get; set; }
+        public string firstName { get; set; }
+
+        public string lastName { get; set; }
 
         public string? mobile { get; set; }
 
@@ -78,9 +80,9 @@ namespace filpkart_api.Modals
         public string? Id { get; set; }
         [BsonRepresentation(BsonType.ObjectId), BsonElement("productId")]
         public List<string> ProductId { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
         public int Quantity {  get; set; }
-        public string Contact { get; set; }
+        public string? Contact { get; set; }
         public Address Address { get; set; }
         public string PaymentMethod { get; set; }
 

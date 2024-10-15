@@ -6,7 +6,6 @@ namespace filpkart_api.Modals
 {
     public class ProductSettings
     {
-
         public string ConnectionString { get; set; } = null!;
         public string DatabaseName { get; set; } = null!;
         public string CollectionName { get; set; } = null!;
@@ -15,7 +14,6 @@ namespace filpkart_api.Modals
         public string CartCollection { get; set; } = null!;
         public string CategoryCollection { get; set; } = null!;
         public string RatingCollection { get; set; } = null!;
-
 
     }
 
@@ -99,8 +97,6 @@ namespace filpkart_api.Modals
     }
 
 
-
-
     public class Cart
     {
         [BsonId]
@@ -125,6 +121,8 @@ namespace filpkart_api.Modals
         [BsonRepresentation(BsonType.ObjectId), BsonElement("userId")]
         public string? UserId { get;set; }
         public int RatingNumber { get; set; }
+
+        public string? Review {  get; set; }
     }
 
 

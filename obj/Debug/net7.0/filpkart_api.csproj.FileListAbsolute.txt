@@ -136,3 +136,4 @@ C:\Users\Hirbishnoi\OneDrive\Desktop\TechTrove api\obj\Debug\net7.0\refint\filpk
 C:\Users\Hirbishnoi\OneDrive\Desktop\TechTrove api\obj\Debug\net7.0\filpkart_api.pdb
 C:\Users\Hirbishnoi\OneDrive\Desktop\TechTrove api\obj\Debug\net7.0\filpkart_api.genruntimeconfig.cache
 C:\Users\Hirbishnoi\OneDrive\Desktop\TechTrove api\obj\Debug\net7.0\ref\filpkart_api.dll
+C:\Users\Hirbishnoi\OneDrive\Desktop\TechTrove api\bin\Debug\net7.0\BCrypt.Net-Next.dll

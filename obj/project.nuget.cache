@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "rmMIzO+5cfm8Qas3B+GBNFXcM+FSwuPrd4nwUaAC+VqXOZuTsjSrE3119Wzv8TDU9igBuOP1o3Tmq+z8BTO7FA==",
+  "dgSpecHash": "iX6EcNU7s1GbdnHX7a8VI2vV34/WPsF2R3rqIp2HAGJTqCrORkgm76W8hhGX8yUYe3ASWM912tm6JkBnj22XfQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Hirbishnoi\\OneDrive\\Desktop\\TechTrove api\\filpkart_api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Hirbishnoi\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
     "C:\\Users\\Hirbishnoi\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",
+    "C:\\Users\\Hirbishnoi\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\Hirbishnoi\\.nuget\\packages\\dnsclient\\1.6.1\\dnsclient.1.6.1.nupkg.sha512",
     "C:\\Users\\Hirbishnoi\\.nuget\\packages\\microsoft.aspnetcore.openapi\\7.0.12\\microsoft.aspnetcore.openapi.7.0.12.nupkg.sha512",
     "C:\\Users\\Hirbishnoi\\.nuget\\packages\\microsoft.extensions.apidescription.server\\6.0.5\\microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",

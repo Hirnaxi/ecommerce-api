@@ -62,20 +62,6 @@ namespace filpkart_api.Controllers
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         // Get a product by ID
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductBase>> GetProductById(string id)
@@ -149,6 +135,8 @@ namespace filpkart_api.Controllers
             }
 
             newSignIn.Id = ObjectId.GenerateNewId().ToString();
+            newSignIn.Password = BCrypt.Net.BCrypt.HashPassword(newSignIn.Password);
+            newSignIn.confirmPassword = BCrypt.Net.BCrypt.HashPassword(newSignIn.confirmPassword);
             await _productService.CreateSignInAsync(newSignIn);
             return CreatedAtAction(nameof(GetSignIn), new { id = newSignIn.Id }, newSignIn);
         }
@@ -157,16 +145,23 @@ namespace filpkart_api.Controllers
         [HttpPost ("Login")]
         public async Task<IActionResult> CreateLogin([FromBody] SignIn LoginData)
         {
-            if(LoginData == null || string.IsNullOrEmpty(LoginData.firstName) || string.IsNullOrEmpty(LoginData.Password))
+            if(LoginData == null || string.IsNullOrEmpty(LoginData.firstName) || string.IsNullOrEmpty(LoginData.Password ))
             {
                 return BadRequest("first name and Password are required");
             }
 
-            var user = (await _productService.GetSignInAsync()).FirstOrDefault(u => u.firstName == LoginData.firstName && u.Password == LoginData.Password);
+            var user = (await _productService.GetSignInAsync()).FirstOrDefault(u => u.firstName == LoginData.firstName);
 
             if(user == null)
             {
-                return Unauthorized("Invalid username or password");
+                return Unauthorized("Invalid username ");
+            }
+
+            bool isPasswordValid = BCrypt.Net.BCrypt.Verify(LoginData.Password, user.Password);
+
+            if (!isPasswordValid)
+            {
+                return Unauthorized("Invalid password");
             }
 
             user.IfSignIn = true;

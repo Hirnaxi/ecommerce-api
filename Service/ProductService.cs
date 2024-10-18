@@ -70,11 +70,6 @@ namespace filpkart_api.Service
            await _categoryCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
 
 
-
-
-
-
-
         public async Task<ProductBase> GetProductByIdAsync(string id) =>
             await _productCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
 
@@ -150,7 +145,12 @@ namespace filpkart_api.Service
         public async Task UpdateCartAsync(string id, Cart updateCart) =>
            await _cartCollection.ReplaceOneAsync(x => x.Id == id, updateCart);
 
-
+    
+        public async Task ClearCartAsync(string userId)
+        {
+            var filter = Builders<Cart>.Filter.Eq(x => x.UserId,userId);
+            await _cartCollection.DeleteManyAsync(filter);
+        }
 
 
         //Address Management
@@ -170,7 +170,10 @@ namespace filpkart_api.Service
                 if (!user.AddressList.Any(a => a.StreetAddress == order.Address.StreetAddress &&
                                                 a.City == order.Address.City &&
                                                 a.State == order.Address.State &&
-                                                a.PostalCode == order.Address.PostalCode))
+                                                a.PostalCode == order.Address.PostalCode &&
+                                                a.Country == order.Address.Country &&
+                                                a.Contact == order.Address.Contact &&
+                                                a.Name == order.Address.Name))
                 {
                     user.AddressList.Add(order.Address);
                     await _signInCollection.ReplaceOneAsync(x => x.Id == user.Id, user);
@@ -191,6 +194,7 @@ namespace filpkart_api.Service
         public async Task<Rating> GetRatingByProductId (string productId )=>
             await _ratingCollection.Find(X => X.ProductId == productId).FirstOrDefaultAsync();
 
+        
     }
 
     }

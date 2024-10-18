@@ -353,6 +353,13 @@ namespace filpkart_api.Controllers
                 return NoContent();
             }
 
+        //Clear Cart 
+        [HttpDelete("Cart/Clear/{userId}")]
+        public async Task<IActionResult> ClearCart(string userId)
+        {
+            await _productService.ClearCartAsync(userId);
+            return NoContent();
+        }
 
 
         // Get all users
@@ -360,7 +367,7 @@ namespace filpkart_api.Controllers
         public async Task<ActionResult<List<SignIn>>> GetUsers()
         {
             var users = await _productService.GetSignInAsync();
-            return Ok(users);
+            return Ok("Cart cleared successfully.");
         }
 
 

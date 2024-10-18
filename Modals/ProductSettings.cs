@@ -30,6 +30,8 @@ namespace filpkart_api.Modals
         public string? Id { get; set; }
         public string Name { get; set; }
         public string? Brand { get; set; }
+
+        public string? Highlight {  get; set; }
         public decimal? Price { get; set; }
         public string? Image1 { get; set; }
         public string? Image2 { get; set; }
@@ -79,7 +81,7 @@ namespace filpkart_api.Modals
         [BsonRepresentation(BsonType.ObjectId), BsonElement("productId")]
         public List<string> ProductId { get; set; }
         public string? Name { get; set; }
-        public int Quantity {  get; set; }
+        public int? Quantity {  get; set; }
         public string? Contact { get; set; }
         public Address Address { get; set; }
         public string PaymentMethod { get; set; }
@@ -94,6 +96,11 @@ namespace filpkart_api.Modals
         public string City { get; set; }
         public string State { get; set; }
         public string PostalCode { get; set; }
+
+        public string Country { get; set; }
+
+        public string Contact { get; set; }
+        public string Name { get; set; }
     }
 
 

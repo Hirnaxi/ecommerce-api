@@ -356,6 +356,24 @@ namespace filpkart_api.Controllers
             return NoContent();
         }
 
+        //Delete Cart products when product palaced
+        [HttpDelete("Cart/Delete/{userId}/{productId}")]
+        public async Task<IActionResult> DeleteProductFromCart(string userId, string productId)
+        {
+            var cartItem = await _productService.GetCartsAsync();
+            var itemToDelete = cartItem.FirstOrDefault(c => c.UserId == userId && c.ProductId == productId);
+
+            if (itemToDelete == null)
+            {
+                return NotFound();
+            }
+
+            await _productService.DeleteCartAsync(itemToDelete.Id);
+            return NoContent();
+        }
+
+
+
 
         // Get all users
         [HttpGet("Users")]

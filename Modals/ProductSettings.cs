@@ -78,10 +78,11 @@ namespace filpkart_api.Modals
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId), BsonElement("_id")]
         public string? Id { get; set; }
-        [BsonRepresentation(BsonType.ObjectId), BsonElement("productId")]
-        public List<string> ProductId { get; set; }
+        //[BsonRepresentation(BsonType.ObjectId), BsonElement("productId")]
+        //public List<string> ProductId { get; set; }
+        public List<OrderedProduct> Products { get; set; } = new List<OrderedProduct>();
         public string? Name { get; set; }
-        public int? Quantity {  get; set; }
+       
         public string? Contact { get; set; }
         public Address Address { get; set; }
         public string PaymentMethod { get; set; }
@@ -90,6 +91,12 @@ namespace filpkart_api.Modals
         public string UserId { get; set; }
     }
 
+    public class OrderedProduct
+    {
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string ProductId { get; set; }
+        public int Quantity { get; set; }
+    }
     public class Address
     {
         public string StreetAddress { get; set; }

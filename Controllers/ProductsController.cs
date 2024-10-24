@@ -134,23 +134,32 @@ namespace filpkart_api.Controllers
                 return BadRequest("SignIn data is required.");
             }
 
+            bool emailExists = await _productService.IsEmailExistsAsync(newSignIn.Email);
+            if (emailExists)
+            {
+                return Conflict("Email is already registered. Please sign in or use a different email.");
+            }
+
+            // Create new sign-in record
             newSignIn.Id = ObjectId.GenerateNewId().ToString();
             newSignIn.Password = BCrypt.Net.BCrypt.HashPassword(newSignIn.Password);
             newSignIn.confirmPassword = BCrypt.Net.BCrypt.HashPassword(newSignIn.confirmPassword);
+
             await _productService.CreateSignInAsync(newSignIn);
             return CreatedAtAction(nameof(GetSignIn), new { id = newSignIn.Id }, newSignIn);
         }
+
 
         //Login
         [HttpPost ("Login")]
         public async Task<IActionResult> CreateLogin([FromBody] SignIn LoginData)
         {
-            if(LoginData == null || string.IsNullOrEmpty(LoginData.firstName) || string.IsNullOrEmpty(LoginData.Password ))
+            if(LoginData == null || string.IsNullOrEmpty(LoginData.Email) || string.IsNullOrEmpty(LoginData.Password ))
             {
-                return BadRequest("first name and Password are required");
+                return BadRequest("email and Password are required");
             }
 
-            var user = (await _productService.GetSignInAsync()).FirstOrDefault(u => u.firstName == LoginData.firstName);
+            var user = (await _productService.GetSignInAsync()).FirstOrDefault(u => u.Email == LoginData.Email);
 
             if(user == null)
             {
@@ -164,7 +173,7 @@ namespace filpkart_api.Controllers
                 return Unauthorized("Invalid password");
             }
 
-            user.IfSignIn = true;
+            user.IfSignIn = true;   
             await _productService.LogoutAccountAsync(user.Id, user);
 
             return Ok(user);
@@ -187,8 +196,9 @@ namespace filpkart_api.Controllers
             }
 
             existingUser.firstName = updateUserData.firstName;
-          //  existingUser.lastName = updateUserData.lastName;
-            existingUser.Password = updateUserData.Password;
+            existingUser.lastName = updateUserData.lastName;
+            existingUser.Email = updateUserData.Email;
+            existingUser.mobile = updateUserData.mobile;
            
             await _productService.LogoutAccountAsync(id, existingUser);
             return NoContent();

@@ -57,16 +57,16 @@ namespace filpkart_api.Modals
         [BsonId, BsonRepresentation(BsonType.ObjectId)]
         public string? Id { get; set; }
 
-        [Required]
-        public string firstName { get; set; }
+        public string? firstName { get; set; }
 
-        public string lastName { get; set; }
+        public string? lastName { get; set; }
 
         public string? mobile { get; set; }
 
         [Required]
         public string? Password { get; set; }
         public bool? IfSignIn { get; set; } = true;
+        [Required]
         public string? Email { get; set; }
         public string? confirmPassword {  get; set; }
         public List<Address> AddressList { get; set; } = new List<Address>();

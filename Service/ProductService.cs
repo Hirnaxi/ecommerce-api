@@ -91,6 +91,11 @@ namespace filpkart_api.Service
         public async Task CreateSignInAsync(SignIn signIn) =>
             await _signInCollection.InsertOneAsync(signIn);
 
+        public async Task<bool> IsEmailExistsAsync(string email)
+        {
+            return await _signInCollection.Find(s => s.Email == email).AnyAsync();
+        }
+
         public async Task LogoutAccountAsync(string id, SignIn signOut) =>
             await _signInCollection.ReplaceOneAsync(x => x.Id == id, signOut);
 
